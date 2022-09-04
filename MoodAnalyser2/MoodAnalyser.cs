@@ -24,24 +24,25 @@ namespace MoodAnalyser2
         {
             try
             {
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserCustomException(MoodAnalyserCustomException.ExceptionType.EMPTY_MESSAGE, "Mood Should Not Be Empty");
 
+                }
                 if (message.ToUpper().Contains("SAD"))
                 {
-                    return "Sad Mood";
+                    return "Sad";
                 }
                 else
                 {
-                    return "Happy Mood";
+                    return "Happy";
                 }
             }
-            catch (Exception ex)
+
+            catch (MoodAnalyserCustomException)
             {
-                return "Happy";
+                return "Mood Should Not Be Empty";
             }
-
-
         }
-
-
     }
 }

@@ -54,23 +54,23 @@ namespace MSTest_MoodAnalyser
 
         //Test Case 2.1 Given Null Mood Should Return Happy
 
-        [TestMethod]
-        public void GivenNullMood_ShouldReturnHAPPY()
-        {
+        //[TestMethod]
+        //public void GivenNullMood_ShouldReturnHAPPY()
+        //{
 
-            //Arrange
+        //    //Arrange
 
-            string message = null;
-            MoodAnalyser obj = new MoodAnalyser(message);
+        //    string message = null;
+        //    MoodAnalyser obj = new MoodAnalyser(message);
 
-            //Act
+        //    //Act
 
-            string actual = obj.AnalyseMood();
+        //    string actual = obj.AnalyseMood();
 
-            //Assert
+        //    //Assert
 
-            Assert.AreEqual(actual, "Happy");
-        }
+        //    Assert.AreEqual(actual, "Happy");
+        //}
 
         //UC3 Given Null or Empty Message when Analyse Should Return Exception HandleMessage
 
@@ -93,7 +93,7 @@ namespace MSTest_MoodAnalyser
         //Test Case 3.1 Given Null Mood Should throw MoodAnalysis Exception
 
         [TestMethod]
-        public void GivenNullMood_ShouldthrowMoodAnalysisException()
+        public void GivenNullMood_ShouldthrowMoodAnalysisException_IndicatingNullMood()
         {
             try
             {
@@ -106,6 +106,27 @@ namespace MSTest_MoodAnalyser
             {
                 //Assert
                 Assert.AreEqual("Mood Should Not Be Null", e.Message);
+            }
+        }
+
+        //Test Case 3.1 Given Null Mood Should throw MoodAnalysis Exception
+
+        [TestMethod]
+        public void GivenEmptyMood_ShouldthrowMoodAnalysisException_IndicatingEmptyMood()
+        {
+            try
+            {
+                //Arrange
+                string message = "";
+                MoodAnalyser obj = new MoodAnalyser(message);
+
+                //Act
+                string actual = obj.AnalyseMood();
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                //Assert
+                Assert.AreEqual("Mood Should Not Be Empty", e.Message);
             }
         }
     }
