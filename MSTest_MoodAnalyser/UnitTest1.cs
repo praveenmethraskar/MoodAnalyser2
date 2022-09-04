@@ -18,7 +18,7 @@ namespace MSTest_MoodAnalyser
             string message = "I am in Sad Mood";
             MoodAnalyser obj = new MoodAnalyser(message);
 
-            string expected = "Sad Mood";
+            string expected = "Sad";
 
             //Act
 
@@ -41,7 +41,7 @@ namespace MSTest_MoodAnalyser
             string message = "I am in Happy Mood";
             MoodAnalyser obj = new MoodAnalyser(message);
 
-            string expected = "Happy Mood";
+            string expected = "Happy";
 
             //Act
 
@@ -50,6 +50,26 @@ namespace MSTest_MoodAnalyser
             //Assert
 
             Assert.AreEqual(expected, actual);
+        }
+
+        //Test Case 2.1 Given Null Mood Should Return Happy
+
+        [TestMethod]
+        public void GivenNullMood_ShouldReturnHAPPY()
+        {
+
+            //Arrange
+
+            string message = null;
+            MoodAnalyser obj = new MoodAnalyser(message);
+
+            //Act
+
+            string actual = obj.AnalyseMood();
+
+            //Assert
+
+            Assert.AreEqual(actual, "Happy");
         }
     }
 }
