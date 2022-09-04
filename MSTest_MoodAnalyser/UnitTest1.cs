@@ -129,5 +129,51 @@ namespace MSTest_MoodAnalyser
                 Assert.AreEqual("Mood Should Not Be Empty", e.Message);
             }
         }
+
+        //Test Case 4.1 Given MoodAnalyser ClassName should return object of MoodAnalyser
+
+        [TestMethod]
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
+        {
+            object expected = new MoodAnalyser();
+            object obj = MoodAnalyserFactory.CreateMoodAnalyser("MoodAnalyse.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+
+        [TestMethod]
+        public void GivenMoodAnalyser_ClassName_Should_ReturnMoodAnalyzer_Object()
+        {
+            //Arrange
+            string className = "MoodAnalyse.MoodAnalyser";
+            string constructorName = "MoodAnalyser";
+
+            //Act
+            object expected = new MoodAnalyser("MoodAnalyse.MoodAnalyser", constructorName);
+            object checkObj = MoodAnalyserFactory.CreateMoodAnalyser(className, constructorName);
+
+            //Assert
+            //Assert.AreEqual(expected, checkObj);
+            expected.Equals(checkObj);
+
+        }
+
+        //Test Case 4.2
+        [TestMethod]
+        public void GivenImpoperClassName_ShouldThrowMoodAnalyseException_IndicatingNoSuchClass()
+        {
+            try
+            {
+                //Arrange
+                string className = "DemoNamespace.MoodAnalyser";     //wrong className passed to pass test
+                string constructorName = "MoodAnalyser";
+                //Act
+                object resultObj = MoodAnalyserFactory.CreateMoodAnalyser(className, constructorName);
+            }
+            catch (MoodAnalyserCustomException e)
+            {
+                //Assert
+                Assert.AreEqual("Class not found", e.Message);
+            }
+        }
     }
 }
